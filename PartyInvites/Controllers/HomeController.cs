@@ -30,13 +30,13 @@ namespace PartyInvites.Controllers
             context.Add(guestResponde);
             context.SaveChanges();
             return RedirectToAction(nameof(Thanks), 
-                new { Name = guestResponde.Name, WillAttend = guestResponde.WiilAttend});
+                new { Name = guestResponde.Name, WillAttend = guestResponde.WillAttend});
         }
 
         public IActionResult Thanks(GuestResponse response) => View(response);
 
         public IActionResult ListResponse() =>
-            View(context.Response.OrderByDescending(r => r.WiilAttend));
+            View(context.Response.OrderByDescending(r => r.WillAttend));
 
     }
 }

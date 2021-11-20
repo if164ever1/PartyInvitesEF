@@ -26,10 +26,11 @@ namespace PartyInvites
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddControllersWithViews();
             string connectionStrong = Configuration["ConnectionStrings:DefaultConnection"];
             services.AddDbContext<DataContext>(options => 
                 options.UseSqlServer(connectionStrong));
-            services.AddControllers();
+            
             services.AddRazorPages();
             
         }
@@ -59,7 +60,14 @@ namespace PartyInvites
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,0 +1,21 @@
+﻿@model PartyInvites.Model.GuestResponse
+@{
+    ViewData["Title"] = "Thanks";
+}
+
+<div class="text-center mt-3">
+    <h1>Thank you @Model.Name!</h1>
+    @if (Model.WiilAttend == true)
+    {
+        <div>
+            Its greate that you are comming!
+        </div>
+    }
+    else 
+    {
+        <div>
+            Sorry to hear that you are not comming!
+        </div>    
+    }
+    Click <a asp-action="ListResponse">here</a> to see who is comming!
+</div>

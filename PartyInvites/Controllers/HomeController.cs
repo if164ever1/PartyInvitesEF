@@ -36,7 +36,7 @@ namespace PartyInvites.Controllers
         public IActionResult Thanks(GuestResponse response) => View(response);
 
         public IActionResult ListResponse() =>
-            View(context.Response.OrderByDescending(r => r.WillAttend));
+            View(context.Response.Where(r => r.WillAttend == true).OrderBy(r => r.Email));
 
     }
 }
